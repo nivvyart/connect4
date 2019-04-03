@@ -1,0 +1,28 @@
+h1, h2 {
+  text-align: center;
+}
+table {
+  border: 5px solid red;
+  width: 700px;
+  height: 600px;
+  margin: 0 auto;
+}
+tr {
+  border: 3px solid blue;
+}
+td {
+  border: 1px solid black;
+}
+
+#input {
+  height: 110px
+}
+
+.bluePiece {
+  background-color: blue;
+  border-radius: 50%;
+}
+.bluePiece {
+  background-color: red;
+  border-radius: 50%;
+}
