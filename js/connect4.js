@@ -18,105 +18,106 @@ const connect4 = {
 // blue = -1
 //null = empty space
 
-playerRed = true; // red goes first easy to change this with a button that changes this to false.
+playerBlue = true; // red goes first easy to change this with a button that changes this to false.
 //token is "dropped" into array row,
 // could use the return function here to feed info into the win checker
 
+
 const row1Move = function() {
   for (let i = 0; i < 7; i++) {
-    if (connect4.row1[i].piece === null && playerRed === true) {
+    if (connect4.row1[i].piece === null && playerBlue === true) {
       connect4.row1[i].piece = 1
-      playerRed = false;
-      return
+      playerBlue=false
+      return connect4.row1[i].pos
     }
-    if (connect4.row1[i].piece === null && playerRed === false) {
+    if (connect4.row1[i].piece === null && playerBlue === false) {
       connect4.row1[i].piece = -1
-      playerRed = true;
-      return
+      playerBlue = true;
+      return connect4.row1[i].pos
     }
   }
 }
 const row2Move = function() {
   for (let i = 0; i < 7; i++) {
-    if (connect4.row2[i].piece === null && playerRed === true) {
+    if (connect4.row2[i].piece === null && playerBlue === true) {
       connect4.row2[i].piece = 1
-      playerRed = false;
-      return
+      playerBlue = false;
+      return connect4.row2[i].pos
     }
-    if (connect4.row2[i].piece === null && playerRed === false) {
+    if (connect4.row2[i].piece === null && playerBlue === false) {
       connect4.row2[i].piece = -1
-      playerRed = true;
-      return
+      playerBlue = true;
+      return connect4.row2[i].pos
     }
   }
 }
 const row3Move = function() {
   for (let i = 0; i < 7; i++) {
-    if (connect4.row3[i].piece === null && playerRed === true) {
+    if (connect4.row3[i].piece === null && playerBlue === true) {
       connect4.row3[i].piece = 1
-      playerRed = false;
-      return
+      playerBlue = false;
+      return connect4.row3[i].pos
     }
-    if (connect4.row3[i].piece === null && playerRed === false) {
+    if (connect4.row3[i].piece === null && playerBlue === false) {
       connect4.row3[i].piece = -1
-      playerRed = true;
-      return
+      playerBlue = true;
+      return connect4.row3[i].pos
     }
   }
 }
 const row4Move = function() {
   for (let i = 0; i < 7; i++) {
-    if (connect4.row4[i].piece === null && playerRed === true) {
+    if (connect4.row4[i].piece === null && playerBlue === true) {
       connect4.row4[i].piece = 1
-      playerRed = false;
-      return
+      playerBlue = false;
+      return connect4.row4[i].pos
     }
-    if (connect4.row4[i].piece === null && playerRed === false) {
+    if (connect4.row4[i].piece === null && playerBlue === false) {
       connect4.row4[i].piece = -1
-      playerRed = true;
-      return
+      playerBlue = true;
+      return connect4.row4[i].pos
     }
   }
 }
 const row5Move = function() {
   for (let i = 0; i < 7; i++) {
-    if (connect4.row5[i].piece === null && playerRed === true) {
+    if (connect4.row5[i].piece === null && playerBlue === true) {
       connect4.row5[i].piece = 1
-      playerRed = false;
-      return
+      playerBlue = false;
+      return connect4.row5[i].pos
     }
-    if (connect4.row5[i].piece === null && playerRed === false) {
+    if (connect4.row5[i].piece === null && playerBlue === false) {
       connect4.row5[i].piece = -1
-      playerRed = true;
-      return
+      playerBlue = true;
+      return connect4.row5[i].pos
     }
   }
 }
 const row6Move = function() {
   for (let i = 0; i < 7; i++) {
-    if (connect4.row6[i].piece === null && playerRed === true) {
+    if (connect4.row6[i].piece === null && playerBlue === true) {
       connect4.row6[i].piece = 1
-      playerRed = false;
-      return
+      playerBlue = false;
+      return connect4.row6[i].pos
     }
-    if (connect4.row6[i].piece === null && playerRed === false) {
+    if (connect4.row6[i].piece === null && playerBlue === false) {
       connect4.row6[i].piece = -1
-      playerRed = true;
-      return
+      playerBlue = true;
+      return connect4.row6[i].pos
     }
   }
 }
 const row7Move = function() {
   for (let i = 0; i < 7; i++) {
-    if (connect4.row7[i].piece === null && playerRed === true) {
+    if (connect4.row7[i].piece === null && playerBlue === true) {
       connect4.row7[i].piece = 1
-      playerRed = false;
-      return
+      playerBlue = false;
+      return connect4.row7[i].pos
     }
-    if (connect4.row7[i].piece === null && playerRed === false) {
+    if (connect4.row7[i].piece === null && playerBlue === false) {
       connect4.row7[i].piece = -1
-      playerRed = true;
-      return
+      playerBlue = true;
+      return connect4.row7[i].pos
     }
   }
 }
@@ -134,22 +135,104 @@ const iterate = function() {
   }
 }
 
+const resetGame = function() {
+  for (var key in connect4) { //this loops through the rows (connect4)
+    console.log(key, connect4[key]);
+    for (let i = 0; i < connect4[key].length; i++) { // this loops through each row
+    connect4[key][i].piece = null;
+    }
+  }
+}
+
 //
 // //stuck on this, the score is updating appropriately now but i can get the jloop going through the rows, ie row 1-7
 // //win contions
 // //row 1 - 7, abcd, bcde, cdef
-score = 0;
 const winTest = function() {
   for (var key in connect4) { //connect4 rows
     for (let i = 0; i < connect4[key].length; i++) { //connect4.row
+      score = 0;
       for (let j = 0; j < 4 ; j++) {
-            //score += connect4.[key][j].piece;
-            console.log(connect4[key][j].pos);
-          if (score === 4){
-            return console.log('Red win');
-          } if (score === -4){
-            return console.log('Blue win')
-          }
+          score += connect4[key][j].piece;
+        if (score === 4){
+          return console.log(`Red win at ${connect4[key][j].pos}`);
+        } if (score === -4){
+          return console.log(`Blue win at ${connect4[key][j].pos}`)
+        }
+      }
+      //score reset here
+      score = 0;
+      for (let j = 1; j < 5 ; j++) {
+          score += connect4[key][j].piece;
+        if (score === 4){
+          return console.log(`Red win at ${connect4[key][j].pos}`);
+        } if (score === -4){
+          return console.log(`Blue win at ${connect4[key][j].pos}`)
+        }
+      }
+      //score reset
+      score = 0;
+      for (let j = 2; j < 6 ; j++) {
+          score += connect4[key][j].piece;
+        if (score === 4){
+          return console.log(`Red win at ${connect4[key][j].pos}`);
+        } if (score === -4){
+          return console.log(`Blue win at ${connect4[key][j].pos}`)
+        }
+      }
+    }
+    score = 0;
+    for (let j = 0; j < 7; j++) { //vertical check starts here
+      score += connect4[key][0].piece;
+      if (score === 4){
+        return console.log(`Red win at ${connect4[key][0].pos}`);
+      } if (score === -4){
+        return console.log(`Blue win at ${connect4[key][0].pos}`)
+      }
+    }
+    score = 0
+    for (let j = 0; j < 7; j++) { //vertical check starts here
+      score += connect4[key][1].piece;
+      if (score === 4){
+        return console.log(`Red win at ${connect4[key][1].pos}`);
+      } if (score === -4){
+        return console.log(`Blue win at ${connect4[key][1].pos}`)
+      }
+    }
+    score = 0;
+    for (let j = 0; j < 7; j++) { //vertical check starts here
+      score += connect4[key][2].piece;
+      if (score === 4){
+        return console.log(`Red win at ${connect4[key][2].pos}`);
+      } if (score === -4){
+        return console.log(`Blue win at ${connect4[key][2].pos}`)
+      }
+    }
+    score = 0;
+    for (let j = 0; j < 7; j++) { //vertical check starts here
+      score += connect4[key][3].piece;
+      if (score === 4){
+        return console.log(`Red win at ${connect4[key][3].pos}`);
+      } if (score === -4){
+        return console.log(`Blue win at ${connect4[key][3].pos}`)
+      }
+    }
+    score = 0;
+    for (let j = 0; j < 7; j++) { //vertical check starts here
+      score += connect4[key][4].piece;
+      if (score === 4){
+        return console.log(`Red win at ${connect4[key][4].pos}`);
+      } if (score === -4){
+        return console.log(`Blue win at ${connect4[key][4].pos}`)
+      }
+    }
+    score = 0;
+    for (let j = 0; j < 7; j++) { //vertical check starts here
+      score += connect4[key][5].piece;
+      if (score === 4){
+        return console.log(`Red win at ${connect4[key][5].pos}`);
+      } if (score === -4){
+        return console.log(`Blue win at ${connect4[key][5].pos}`)
       }
     }
   }
